@@ -7,10 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="Post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="file" required name ="files">
-        <button type="Submit">Submit</button>
+        <input type="file" required name ="file">
+        <button type="Submit">Upload</button>
     </form>
 </body>
 </html>

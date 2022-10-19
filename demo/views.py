@@ -28,15 +28,17 @@ def export_data_to_excel(request):
 #creating function to import data from excel file database in django
 
 def import_data_to_db(request):
-    if request.method == 'Post':
-        file = request.FILES['files']
+    print('listning....')
+    if request.method == 'POST':
+        print('working')
+        file = request.FILES['file']
         obj = ExcelFile.objects.create(
             file = file
         )
-        path = file.file
-        print(f'{settings.BASE_DIR}+{Path}')
+        path = str(obj.file)
+        print(f'{settings.BASE_DIR}/{path}')
         df = pd.read_excel(path)
-        for i in df.values:
-            print (i)
+        for record in df.values:
+            Employee.objects.create(employee_name=record[1],employee_contact=record[2],employee_address=record[3])
 
     return render(request , 'excel.html')
